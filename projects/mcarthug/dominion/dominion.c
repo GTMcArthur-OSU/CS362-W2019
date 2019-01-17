@@ -1233,7 +1233,7 @@ int smithyCard(int currentPlayer, struct gameState *state, int handPos){
 	}
 			
       //discard card from hand
-      discardCard(handPos, currentPlayer, state, 0);
+      discardCard(handPos, currentPlayer, state, 1); // <----BUG---
       return 0;
 }
 int adventurerCard(int currentPlayer, struct gameState *state, int drawntreasure, int *temphand, int z){
@@ -1243,7 +1243,7 @@ int adventurerCard(int currentPlayer, struct gameState *state, int drawntreasure
 	  shuffle(currentPlayer, state);
 	}
 	drawCard(currentPlayer, state);
-	cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
+	// cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card. // <----BUG---
 	if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
 	  drawntreasure++;
 	else{
@@ -1303,7 +1303,7 @@ int feastCard(int currentPlayer, struct gameState *state, int *temphand, int cho
       }     
 
       //Reset Hand
-      for (int i = 0; i <= state->handCount[currentPlayer]; i++){
+      for (int i = 1; i <= state->handCount[currentPlayer]; i++){  // <----BUG---
 	state->hand[currentPlayer][i] = temphand[i];
 	temphand[i] = -1;
       }
@@ -1342,8 +1342,8 @@ int villageCard(int currentPlayer, struct gameState *state, int handPos){
       drawCard(currentPlayer, state);
 			
       //+2 Actions
-      state->numActions = state->numActions + 2;
-			
+      state->numActions = state->numActions + 100;  // <----BUG---
+ 			
       //discard played card from hand
       discardCard(handPos, currentPlayer, state, 0);
       return 0;
