@@ -1,4 +1,4 @@
-CFLAGS= -Wall -fpic -coverage -lm -std=c99
+CFLAGS= -Wall -fpic -coverage -lm -std=c99 -D_XOPEN_SOURCE
 
 rngs.o: rngs.h rngs.c
 	gcc -c rngs.c -g  $(CFLAGS)
@@ -28,6 +28,43 @@ runtests: testDrawCard
 	./testDrawCard &> unittestresult.out
 	gcov dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
+
+unittestresults: dominion.o rngs.o unittest1.c unittest2.c unittest3.c unittest4.c cardtest1.c cardtest2.c cardtest3.c myassert.c myassert.h
+
+	echo "----- unittest1.c - RESULTS -----" > unittestresults.out
+	gcc -o unittest1 unittest1.c myassert.c -g dominion.o rngs.o $(CFLAGS)
+	./unittest1 >> unittestresults.out	
+	
+	echo "----- unittest2.c - RESULTS -----" >> unittestresults.out
+	gcc -o unittest2 unittest2.c myassert.c -g dominion.o rngs.o $(CFLAGS)
+	./unittest2 >> unittestresults.out
+	
+	echo "----- unittest3.c - RESULTS -----" >> unittestresults.out
+	gcc -o unittest3 unittest3.c myassert.c -g dominion.o rngs.o $(CFLAGS)
+	./unittest3 >> unittestresults.out
+	
+	echo "----- unittest4.c - RESULTS -----" >> unittestresults.out
+	gcc -o unittest4 unittest4.c myassert.c -g dominion.o rngs.o $(CFLAGS)
+	./unittest4 >> unittestresults.out
+	
+	echo "----- cardtest1.c - RESULTS -----" >> unittestresults.out
+	gcc -o cardtest1 cardtest1.c myassert.c -g dominion.o rngs.o $(CFLAGS)
+	./cardtest1 >> unittestresults.out
+
+	echo "----- cardtest2.c - RESULTS -----" >> unittestresults.out
+	gcc -o cardtest2 cardtest2.c myassert.c -g dominion.o rngs.o $(CFLAGS)
+	./cardtest2 >> unittestresults.out
+
+	echo "----- cardtest3.c - RESULTS -----" >> unittestresults.out
+	gcc -o cardtest3 cardtest3.c myassert.c -g dominion.o rngs.o $(CFLAGS)
+	./cardtest3 >> unittestresults.out
+
+	echo "----- cardtest4.c - RESULTS -----" >> unittestresults.out
+	gcc -o cardtest4 cardtest4.c myassert.c -g dominion.o rngs.o $(CFLAGS)
+	./cardtest4 >> unittestresults.out
+
+	echo "------ All Unit Tests - COVERAGE -----" >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
 
 
 player: player.c interface.o
