@@ -45,6 +45,7 @@ int checkGreatHall(struct gameState *baseline, int handPos, int player){
 	}
 	else {
 		printf(" Hand size was not increased\n");
+		memcpy(&testGame.handCount[player], &baseline->handCount[player], sizeof(int));
 	}
 	
 	if (assertEqual_bool(testGame.deckCount[player], baseline->deckCount[player])){
@@ -52,6 +53,7 @@ int checkGreatHall(struct gameState *baseline, int handPos, int player){
 	}
 	else {
 		printf(" Deck size was not decreased by 1\n");
+		memcpy(&testGame.deckCount[player], &baseline->deckCount[player], sizeof(int));
 	}
 	
 	if (assertEqual_bool(testGame.discardCount[player], baseline->discardCount[player])){
@@ -59,6 +61,7 @@ int checkGreatHall(struct gameState *baseline, int handPos, int player){
 	}
 	else {
 		printf(" Discard size was not increased by 1\n");
+		memcpy(&testGame.discardCount[player], &baseline->discardCount[player], sizeof(int));
 	}
 	
 	if (assertEqual_bool(testGame.numActions, baseline->numActions)){
@@ -66,6 +69,7 @@ int checkGreatHall(struct gameState *baseline, int handPos, int player){
 	}
 	else {
 		printf(" Great Hall did not add 1 action\n");
+		memcpy(&testGame.numActions, &baseline->numActions, sizeof(int));
 	}
 	// test that everything else is the same
 	if (assertEqual_bool(memcmp(&testGame, baseline, sizeof(struct gameState)),0)){
