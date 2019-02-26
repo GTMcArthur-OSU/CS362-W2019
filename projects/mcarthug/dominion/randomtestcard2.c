@@ -1,5 +1,5 @@
 /*------------------------------------
- Random unit test for great hall card
+ Random unit test for village card
 -------------------------------------*/
 
 #include "dominion.h"
@@ -22,7 +22,7 @@ void sig_segv_handler(int sig_num){
 	exit(0);
 }
 
-int checkGreatHall(struct gameState *baseline, int handPos, int player){
+int checkVillage(struct gameState *baseline, int handPos, int player){
 	int testPassed = 0;
 	struct gameState testGame;
 	// stuff for cardEffect()
@@ -32,13 +32,13 @@ int checkGreatHall(struct gameState *baseline, int handPos, int player){
 	memcpy(&testGame, baseline, sizeof(struct gameState));
 	
 	// activate!
-	cardEffect(great_hall, choice1, choice2, choice3, &testGame, handPos, &bonus);
+	cardEffect(village, choice1, choice2, choice3, &testGame, handPos, &bonus);
 	
 	// update baseline to reflect what should have happened
 	drawCard(player, baseline);
-	baseline->numActions++;
+	baseline->numActions += 2;
 	discardCard(handPos, player, baseline, 0);
-	
+
 	// tests
 	if (assertEqual_bool(testGame.handCount[player], baseline->handCount[player])){
 		testPassed++;
@@ -68,7 +68,7 @@ int checkGreatHall(struct gameState *baseline, int handPos, int player){
 		testPassed++;
 	}
 	else {
-		printf(" Great Hall did not add 1 action\n");
+		printf(" Village did not add 2 actions\n");
 		memcpy(&testGame.numActions, &baseline->numActions, sizeof(int));
 	}
 	// test that everything else is the same
@@ -84,6 +84,8 @@ int checkGreatHall(struct gameState *baseline, int handPos, int player){
 
 
 
+
+
 int main(){
 	// signal handling: borrowed from Piazza post 120
 	// register handlers for SIGSEGV
@@ -95,8 +97,8 @@ int main(){
 	
 	printf("#############################\n");
 	printf("#   CARD RANDOM TESTING     #\n");
-	printf("#       Great Hall          #\n");
-	printf("#    randomtestcard2.c      #\n");
+	printf("#         Village           #\n");
+	printf("#    randomtestcard3.c      #\n");
 	printf("#############################\n");
 
 	int seed = 1000;
@@ -128,9 +130,9 @@ int main(){
 		
 		// setup game 
 		initializeGame(numPlayers, k, seed, &baseline);
-		
-		// put great hall in current players hand 
-		baseline.hand[curPlayer][handPos] = great_hall;
+
+		// put village in current players hand 
+		baseline.hand[curPlayer][handPos] = village;
 				
 		// randomize current players deck
 		deckCount = floor(Random()*MAX_DECK);
@@ -144,7 +146,7 @@ int main(){
 			baseline.deck[curPlayer][i] = ktv[ndx];
 		}
 		
-		int passed = checkGreatHall(&baseline, handPos, curPlayer);
+		int passed = checkVillage(&baseline, handPos, curPlayer);
 		totalPassed = totalPassed + passed;		
 	}
 	

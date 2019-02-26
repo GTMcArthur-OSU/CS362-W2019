@@ -1,5 +1,5 @@
 /*------------------------------------
- Random unit test for adventurer card
+ Random unit test for great hall card
 -------------------------------------*/
 
 #include "dominion.h"
@@ -22,8 +22,7 @@ void sig_segv_handler(int sig_num){
 	exit(0);
 }
 
-
-int checkAdventurer(struct gameState *baseline, int handPos, int player){
+int checkGreatHall(struct gameState *baseline, int handPos, int player){
 	int testPassed = 0;
 	struct gameState testGame;
 	// stuff for cardEffect()
@@ -33,90 +32,57 @@ int checkAdventurer(struct gameState *baseline, int handPos, int player){
 	memcpy(&testGame, baseline, sizeof(struct gameState));
 	
 	// activate!
-	cardEffect(adventurer, choice1, choice2, choice3, &testGame, handPos, &bonus);
+	cardEffect(great_hall, choice1, choice2, choice3, &testGame, handPos, &bonus);
 	
-	// count up treasures in deck and discard 
-	int expTres = 0; // how many treasure cards to expect in hand
-	int deckTres = 0;
-	int discardTres = 0;
-	for (int i = 0; i < baseline->deckCount[player]; i++){
-		if (baseline->deck[player][i] == copper || baseline->deck[player][i] == silver || baseline->deck[player][i] == gold){
-			deckTres++;
-		}
-	}
-	if (deckTres < 2){
-		// look for more treasure in discard pile 
-		for (int i = 0; i < baseline->discardCount[player]; i++){
-			if (baseline->discard[player][i] == copper || baseline->discard[player][i] == silver || baseline->discard[player][i] == gold){
-				discardTres++;
-			}
-		}
-		if((deckTres + discardTres) < 2){
-			expTres = deckTres + discardTres;
-		}
-		else{
-			expTres = 2;
-		}
-	}
-	else{
-		expTres = 2;
-	}
-	
-	// compare treasure count in hands 
-	int oldTres = 0;
-	int newTres = 0;
-	for (int i = 0; i < baseline->handCount[player]; i++){
-		if(baseline->hand[player][i] == copper){
-			oldTres++;
-		}
-		else if(baseline->hand[player][i] == silver){
-			oldTres++;
-		}
-		else if(baseline->hand[player][i] == gold){
-			oldTres++;
-		}
-	}
-	
-	for (int i = 0; i < testGame.handCount[player]; i++){
-		if(testGame.hand[player][i] == copper){
-			newTres++;
-		}
-		else if(testGame.hand[player][i] == silver){
-			newTres++;
-		}
-		else if(testGame.hand[player][i] == gold){
-			newTres++;
-		}
-	}
+	// update baseline to reflect what should have happened
+	drawCard(player, baseline);
+	baseline->numActions++;
+	discardCard(handPos, player, baseline, 0);
 	
 	// tests
-	if (assertEqual_bool(newTres, oldTres + expTres)){
+	if (assertEqual_bool(testGame.handCount[player], baseline->handCount[player])){
 		testPassed++;
 	}
 	else {
-		printf(" Treasure in hand %d, expected %d\n", newTres, oldTres + expTres);
+		printf(" Hand size was not increased\n");
+		memcpy(&testGame.handCount[player], &baseline->handCount[player], sizeof(int));
 	}
-	if (assertEqual_bool(testGame.supplyCount[estate],baseline->supplyCount[estate])){
-		testPassed++;	
-	}
-	else {
-		printf(" Estate victory points were changed\n");
-	}
-	if (assertEqual_bool(testGame.supplyCount[duchy],baseline->supplyCount[duchy])){
-		testPassed++;		
+	
+	if (assertEqual_bool(testGame.deckCount[player], baseline->deckCount[player])){
+		testPassed++;
 	}
 	else {
-		printf(" Duchy victory points were changed\n");
+		printf(" Deck size was not decreased by 1\n");
+		memcpy(&testGame.deckCount[player], &baseline->deckCount[player], sizeof(int));
 	}
-	if (assertEqual_bool(testGame.supplyCount[province],baseline->supplyCount[province])){
-		testPassed++;		
+	
+	if (assertEqual_bool(testGame.discardCount[player], baseline->discardCount[player])){
+		testPassed++;
 	}
 	else {
-		printf(" Province victory points were changed\n");
+		printf(" Discard size was not increased by 1\n");
+		memcpy(&testGame.discardCount[player], &baseline->discardCount[player], sizeof(int));
+	}
+	
+	if (assertEqual_bool(testGame.numActions, baseline->numActions)){
+		testPassed++;
+	}
+	else {
+		printf(" Great Hall did not add 1 action\n");
+		memcpy(&testGame.numActions, &baseline->numActions, sizeof(int));
+	}
+	// test that everything else is the same
+	if (assertEqual_bool(memcmp(&testGame, baseline, sizeof(struct gameState)),0)){
+		testPassed++;
+	}
+	else {
+		printf(" Error in gameState not caught by other tests\n");
 	}
 	
 	return testPassed;
 }
+
+
 
 int main(){
 	// signal handling: borrowed from Piazza post 120
@@ -129,10 +95,10 @@ int main(){
 	
 	printf("#############################\n");
 	printf("#   CARD RANDOM TESTING     #\n");
-	printf("#       Adventurer          #\n");
-	printf("#    randomtestcard1.c      #\n");
+	printf("#       Great Hall          #\n");
+	printf("#    randomtestcard2.c      #\n");
 	printf("#############################\n");
-	
+
 	int seed = 1000;
 	//set up random number generator
 	SelectStream(1);
@@ -140,7 +106,8 @@ int main(){
 	
 	int cases = 2000;
 	int numPlayers = 4;
-	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,sea_hag, tribute, smithy, council_room};
+	
+	int k[10] = {great_hall, embargo, village, minion, mine, cutpurse,sea_hag, tribute, smithy, council_room};
 	int tv[6] = {copper, silver, gold, estate, duchy, province};
 	int ktv[16];  // kingdom, treasure, victory cards that can possibly be in a deck   
 	for (int i = 0; i < 16; i++){
@@ -155,46 +122,42 @@ int main(){
 	int totalPassed = 0;  // track how many test passed 
 	for (int j = 0; j < cases; j++){
 		int curPlayer = floor(Random()*3);  // randomly select player 
-		int deckCount, discardCount;  // to be randomized later 
+		int deckCount; // randomized later 
 		struct gameState baseline;
 		int handPos = floor(Random()*4);  // randomly select hand position 
 		
-	
 		// setup game 
 		initializeGame(numPlayers, k, seed, &baseline);
 		
-		// put adventurer in current players hand 
-		baseline.hand[curPlayer][handPos] = adventurer;
-		
+		// put great hall in current players hand 
+		baseline.hand[curPlayer][handPos] = great_hall;
+				
 		// randomize current players deck
 		deckCount = floor(Random()*MAX_DECK);
+		// ensure that there is always a card to draw, avoid shuffle
+		if (deckCount < 1){
+			deckCount += 1;
+		}
 		baseline.deckCount[curPlayer] = deckCount;
 		for (int i = 0; i < deckCount; i++){
 			int ndx = floor(Random()*16);
 			baseline.deck[curPlayer][i] = ktv[ndx];
 		}
-		// randomize current players discard
-		discardCount = floor(Random()*MAX_DECK);
-		baseline.discardCount[curPlayer] = discardCount;
-		for (int i = 0; i < discardCount; i++){
-			int ndx = floor(Random()*16);
-			baseline.discard[curPlayer][i] = ktv[ndx];
-		}
 		
-		int passed = checkAdventurer(&baseline, handPos, curPlayer);
-		totalPassed = totalPassed + passed;
+		int passed = checkGreatHall(&baseline, handPos, curPlayer);
+		totalPassed = totalPassed + passed;		
 	}
 	
 	// report results
 	printf("\\\\\\\\\\\\\\RESULTS SUMMARY///////\n");
 	printf("Test Cases Run: %d\n", cases);
-	if (assertEqual_bool(totalPassed, cases * 4)){
+	if (assertEqual_bool(totalPassed, cases * 5)){
 		printf("SUCCESS!!! ALL TESTS PASSED!!!\n");
 	}
 	else {
-		printf("Tests failed %d of %d\n", (cases * 4) - totalPassed, cases * 4);
+		printf("Tests failed %d of %d\n", (cases * 5) - totalPassed, cases * 5);
 		printf("See failed tests above\n");
 	}
-	
+
 	return 0;
 }
