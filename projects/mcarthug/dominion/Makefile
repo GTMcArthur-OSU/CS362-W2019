@@ -30,7 +30,6 @@ runtests: testDrawCard
 	cat dominion.c.gcov >> unittestresult.out
 
 randomtestcard1: dominion.o rngs.o randomtestcard1.c myassert.c myassert.h
-
 	echo "----- randomtestcard1.c - RESULTS -----" > randomtestcard1.out
 	gcc -o randomtestcard1 randomtestcard1.c myassert.c -g dominion.o rngs.o $(CFLAGS)
 	./randomtestcard1 >> randomtestcard1.out	
@@ -44,12 +43,12 @@ randomtestcard2: dominion.o rngs.o randomtestcard2.c myassert.c myassert.h
 	echo "------ randomtestcard2.c - COVERAGE -----" >> randomtestcard2.out
 	gcov -b dominion.c >> randomtestcard2.out
 	
-randomtestcardadventurer: dominion.o rngs.o randomtestcardadventurer.c myassert.c myassert.h
-	echo "----- randomtestcardadventurer.c - RESULTS -----" > randomtestcardadventurer.out
-	gcc -o randomtestcardadventurer randomtestcardadventurer.c myassert.c -g dominion.o rngs.o $(CFLAGS)
-	./randomtestcardadventurer >> randomtestcardadventurer.out	
-	echo "------ randomtestcardadventurer.c - COVERAGE -----" >> randomtestcardadventurer.out
-	gcov -b dominion.c >> randomtestcardadventurer.out
+randomtestadventurer: dominion.o rngs.o randomtestadventurer.c myassert.c myassert.h
+	echo "----- randomtestadventurer.c - RESULTS -----" > randomtestadventurer.out
+	gcc -o randomtestadventurer randomtestadventurer.c myassert.c -g dominion.o rngs.o $(CFLAGS)
+	./randomtestadventurer >> randomtestadventurer.out	
+	echo "------ randomtestadventurer.c - COVERAGE -----" >> randomtestadventurer.out
+	gcov -b dominion.c >> randomtestadventurer.out
 
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
