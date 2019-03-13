@@ -1,6 +1,7 @@
 
 
 import junit.framework.TestCase;
+import java.util.Random;
 
 //You can use this as a skeleton for your 3 different test approach
 //It is an optional to use this file, you can generate your own test file(s) to test the target function!
@@ -164,20 +165,192 @@ public class UrlValidatorTest extends TestCase {
       }
 
    }
-   
-   
-   public void testYourFirstPartition()
+
+
+   public void testRandomUrlValidatorTest()
    {
 	 //You can use this function to implement your First Partition testing
+      int randomRuns = 100;
+      UrlValidator urlVal = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES);
+//    UrlValidator urlVal = new UrlValidator();
+
+      //For loop to assemble a random url
+      // <scheme>://<authority><path>?<query> except that the port number
+      Random rand = new Random(98);
+      for(int ii=0; ii < randomRuns; ii++) {
+
+         String testUrl = "";
+         boolean allValid = true;
+
+         int randInt = rand.nextInt(testUrlScheme.length);
+
+         testUrl += testUrlScheme[randInt].item ;
+         allValid &= testUrlScheme[randInt].valid ;
+
+         randInt = rand.nextInt(testUrlAuthority.length);
+         testUrl += testUrlAuthority[randInt].item ;
+         allValid&= testUrlAuthority[randInt].valid ;
+
+         int portNum = rand.nextInt(80000);
+         if(portNum <= 65535) {
+            allValid &= true;
+            testUrl += ":"+Integer.toString(portNum);
+         } else if (portNum < 70000) {
+            allValid &= false;
+            testUrl += ":"+Integer.toString(portNum);
+         } else {
+            allValid &= true;
+         }
+
+         randInt = rand.nextInt(testPath.length);
+         testUrl += testPath[randInt].item ;
+         allValid &= testPath[randInt].valid ;
+
+         randInt = rand.nextInt(testUrlPathOptions.length);
+         testUrl += testUrlPathOptions[randInt].item ;
+         allValid &= testUrlPathOptions[randInt].valid ;
+
+         randInt = rand.nextInt(testUrlQuery.length);
+         testUrl += testUrlQuery[randInt].item ;
+         allValid &= testUrlQuery[randInt].valid ;
+
+         System.out.print(testUrl+" ");
+
+/*        boolean result = urlVal.isValid(testUrl);
+       if(result == allValid ){
+        	System.out.print("			Test Passed.\n");
+        }else {
+        	System.out.print("			Test FAILED.\n");
+        }
+    */    try {
+            boolean result = urlVal.isValid(testUrl);
+
+            if(result == allValid ){
+               System.out.print("			Test Passed.");
+               if(allValid ) {
+                  System.out.print(" URL was Valid\n");
+               } else {
+                  System.out.print(" URL was invalid\n");
+               }
+            }else {
+               System.out.print("			Test FAILED.");
+               if(allValid ) {
+                  System.out.print(" URL was Valid\n");
+               } else {
+                  System.out.print(" URL was invalid\n");
+               }
+            }
+         } catch(Throwable e) {
+            System.out.print("			Test FAILED due to exception or error. ");
+            if(allValid ) {
+               System.out.print("URL was Valid\n");
+            } else {
+               System.out.print("URL was invalid\n");
+            }
+            System.out.print(e+"\n");
+         }
+      }
+
 
    }
-   
+   /*
+static ResultPair[] testUrlScheme = {new ResultPair("http://", true),
+		new ResultPair("https://", true)
+        //new ResultPair("g@rba&e!", false)
+        };
+
+static ResultPair[] testUrlAuthority = {new ResultPair("www.google.com", true),
+				new ResultPair("www.yahoo.com", true)
+};
+
+static ResultPair[] testPath = {
+   new ResultPair("", true)
+};
+static ResultPair[] testUrlPathOptions = {
+             new ResultPair("", true)
+};
+
+static ResultPair[] testUrlQuery = {       new ResultPair("", true)
+};
+
+*/   //Many of these result pairs are taken from the original UrlValidatorTest code, some have been added and removed from the sets
+   static ResultPair[] testUrlScheme = {new ResultPair("http://", true),
+           new ResultPair("ftp://", true),
+           new ResultPair("https://", true),
+           new ResultPair("HTTPS://", true),
+           new ResultPair("FTP://", true),
+           new ResultPair("HTTP://", true),
+           new ResultPair("h3t://", true),
+           new ResultPair("3ht://", false),
+           new ResultPair("http:/", false),
+           new ResultPair("http:", false),
+           new ResultPair("http/", false),
+           new ResultPair("://", false),
+           new ResultPair("g@rba&e!", false),
+           new ResultPair("", true)};
+
+   static ResultPair[] testUrlAuthority = {new ResultPair("www.google.com", true),
+           new ResultPair("www.yahoo.com", true),
+           new ResultPair("go.com", true),
+           new ResultPair("go.au", true),
+           new ResultPair("0.0.0.0", true),
+           new ResultPair("255.255.255.255", true),
+           new ResultPair("256.256.256.256", false),
+           new ResultPair("255.com", true),
+           new ResultPair("1.2.3.4.5", false),
+           new ResultPair("1.2.3.4.", false),
+           new ResultPair("1.2.3", false),
+           new ResultPair(".1.2.3.4", false),
+           new ResultPair("go.a", false),
+           new ResultPair("go.a1a", false),
+           new ResultPair("go.1aa", false),
+           new ResultPair("aaa.", false),
+           new ResultPair(".aaa", false),
+           new ResultPair("aaa", false),
+           new ResultPair("G'Day", false),
+           new ResultPair("", false)
+   };
+
+   static ResultPair[] testPath = {new ResultPair("/test1", true),
+           new ResultPair("/t123", true),
+           new ResultPair("/$23", true),
+           new ResultPair("/..", false),
+           new ResultPair("/../", false),
+           new ResultPair("/test1", true),
+           new ResultPair("", true),
+           new ResultPair("/test1/file", true),
+           new ResultPair("/..//file", false),
+           new ResultPair("/test1//file", false)
+   };
+   static ResultPair[] testUrlPathOptions = {new ResultPair("/test1", true),
+           new ResultPair("/t123", true),
+           new ResultPair("/$23", true),
+           new ResultPair("/..", false),
+           new ResultPair("/../", false),
+           new ResultPair("/test1/", true),
+           new ResultPair("/#", false),
+           new ResultPair("", true),
+           new ResultPair("/test1/file", true),
+           new ResultPair("/t123/file", true),
+           new ResultPair("/$23/file", true),
+           new ResultPair("/../file", false),
+           new ResultPair("/..//file", false),
+           new ResultPair("/test1/file", true),
+           new ResultPair("/#/file", false)
+   };
+
+   static ResultPair[] testUrlQuery = {new ResultPair("?action=view", true),
+           new ResultPair("?action=edit&mode=up", true),
+           new ResultPair("", true)
+   };
+
+
    public void testYourSecondPartition(){
-		 //You can use this function to implement your Second Partition testing	   
+		 //You can use this function to implement your Second Partition testing
 
    }
-   //You need to create more test cases for your Partitions if you need to 
-   
+   //You need to create more test cases for your Partitions if you need to
+
    public void testIsValid()
    {
 	   //You can use this function for programming based testing
