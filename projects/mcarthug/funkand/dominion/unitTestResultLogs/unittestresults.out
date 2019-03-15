@@ -1,0 +1,290 @@
+----- unittest1.c - RESULTS -----
+#############################
+#   FUNCTION UNIT TESTING   #
+#      fullDeckCount()      #
+#         unittest1.c       #
+#############################
+----------------------------
+Counting cards for Player 0
+----------------------------
+For card 0, fullDeckCount = 3, expected = 3 ---PASS---
+For card 1, fullDeckCount = 3, expected = 3 ---PASS---
+For card 2, fullDeckCount = 3, expected = 3 ---PASS---
+For card 3, fullDeckCount = 3, expected = 3 ---PASS---
+For card 4, fullDeckCount = 3, expected = 3 ---PASS---
+For card 5, fullDeckCount = 3, expected = 3 ---PASS---
+For card 6, fullDeckCount = 3, expected = 3 ---PASS---
+For card 7, fullDeckCount = 3, expected = 3 ---PASS---
+For card 8, fullDeckCount = 3, expected = 3 ---PASS---
+For card 9, fullDeckCount = 3, expected = 3 ---PASS---
+For card 10, fullDeckCount = 3, expected = 3 ---PASS---
+For card 11, fullDeckCount = 3, expected = 3 ---PASS---
+For card 12, fullDeckCount = 3, expected = 3 ---PASS---
+For card 13, fullDeckCount = 3, expected = 3 ---PASS---
+For card 14, fullDeckCount = 3, expected = 3 ---PASS---
+For card 15, fullDeckCount = 3, expected = 3 ---PASS---
+For card 16, fullDeckCount = 3, expected = 3 ---PASS---
+For card 17, fullDeckCount = 3, expected = 3 ---PASS---
+For card 18, fullDeckCount = 3, expected = 3 ---PASS---
+For card 19, fullDeckCount = 3, expected = 3 ---PASS---
+For card 20, fullDeckCount = 3, expected = 3 ---PASS---
+For card 21, fullDeckCount = 3, expected = 3 ---PASS---
+For card 22, fullDeckCount = 3, expected = 3 ---PASS---
+For card 23, fullDeckCount = 3, expected = 3 ---PASS---
+For card 24, fullDeckCount = 3, expected = 3 ---PASS---
+For card 25, fullDeckCount = 3, expected = 3 ---PASS---
+For card 26, fullDeckCount = 3, expected = 3 ---PASS---
+----------------------------
+Counting cards for Player 1
+----------------------------
+For card 0, fullDeckCount = 3, expected = 3 ---PASS---
+For card 1, fullDeckCount = 3, expected = 3 ---PASS---
+For card 2, fullDeckCount = 3, expected = 3 ---PASS---
+For card 3, fullDeckCount = 3, expected = 3 ---PASS---
+For card 4, fullDeckCount = 3, expected = 3 ---PASS---
+For card 5, fullDeckCount = 3, expected = 3 ---PASS---
+For card 6, fullDeckCount = 3, expected = 3 ---PASS---
+For card 7, fullDeckCount = 3, expected = 3 ---PASS---
+For card 8, fullDeckCount = 3, expected = 3 ---PASS---
+For card 9, fullDeckCount = 3, expected = 3 ---PASS---
+For card 10, fullDeckCount = 3, expected = 3 ---PASS---
+For card 11, fullDeckCount = 3, expected = 3 ---PASS---
+For card 12, fullDeckCount = 3, expected = 3 ---PASS---
+For card 13, fullDeckCount = 3, expected = 3 ---PASS---
+For card 14, fullDeckCount = 3, expected = 3 ---PASS---
+For card 15, fullDeckCount = 3, expected = 3 ---PASS---
+For card 16, fullDeckCount = 3, expected = 3 ---PASS---
+For card 17, fullDeckCount = 3, expected = 3 ---PASS---
+For card 18, fullDeckCount = 3, expected = 3 ---PASS---
+For card 19, fullDeckCount = 3, expected = 3 ---PASS---
+For card 20, fullDeckCount = 3, expected = 3 ---PASS---
+For card 21, fullDeckCount = 3, expected = 3 ---PASS---
+For card 22, fullDeckCount = 3, expected = 3 ---PASS---
+For card 23, fullDeckCount = 3, expected = 3 ---PASS---
+For card 24, fullDeckCount = 3, expected = 3 ---PASS---
+For card 25, fullDeckCount = 3, expected = 3 ---PASS---
+For card 26, fullDeckCount = 3, expected = 3 ---PASS---
+---------------------------------------------------
+Counting coppers in deck without them for Player 0
+---------------------------------------------------
+For copper, fullDeckCount = 0, expected = 0 ---PASS---
+---------------------------------------------------
+Counting coppers in deck without them for Player 1
+---------------------------------------------------
+For copper, fullDeckCount = 0, expected = 0 ---PASS---
+ALL TEST PASSED!!!!!
+----- unittest2.c - RESULTS -----
+#############################
+#   FUNCTION UNIT TESTING   #
+#          getCost()        #
+#         unittest2.c       #
+#############################
+-------------------
+Testing card costs
+-------------------
+Cost for card 0 is 0, expected 0 ---PASS---
+Cost for card 1 is 2, expected 2 ---PASS---
+Cost for card 2 is 5, expected 5 ---PASS---
+Cost for card 3 is 8, expected 8 ---PASS---
+Cost for card 4 is 0, expected 0 ---PASS---
+Cost for card 5 is 3, expected 3 ---PASS---
+Cost for card 6 is 6, expected 6 ---PASS---
+Cost for card 7 is 6, expected 6 ---PASS---
+Cost for card 8 is 5, expected 5 ---PASS---
+Cost for card 9 is 4, expected 4 ---PASS---
+Cost for card 10 is 4, expected 4 ---PASS---
+Cost for card 11 is 5, expected 5 ---PASS---
+Cost for card 12 is 4, expected 4 ---PASS---
+Cost for card 13 is 4, expected 4 ---PASS---
+Cost for card 14 is 3, expected 3 ---PASS---
+Cost for card 15 is 4, expected 4 ---PASS---
+Cost for card 16 is 3, expected 3 ---PASS---
+Cost for card 17 is 5, expected 5 ---PASS---
+Cost for card 18 is 3, expected 3 ---PASS---
+Cost for card 19 is 5, expected 5 ---PASS---
+Cost for card 20 is 3, expected 3 ---PASS---
+Cost for card 21 is 4, expected 4 ---PASS---
+Cost for card 22 is 2, expected 2 ---PASS---
+Cost for card 23 is 5, expected 5 ---PASS---
+Cost for card 24 is 4, expected 4 ---PASS---
+Cost for card 25 is 4, expected 4 ---PASS---
+Cost for card 26 is 4, expected 4 ---PASS---
+------------------------------------------------------
+Testing non-existent card does not have a cost
+------------------------------------------------------
+Cost for non-existent card 27 is -1, expected -1 ---PASS---
+ALL TEST PASSED!!!!!
+----- unittest3.c - RESULTS -----
+#############################
+#   FUNCTION UNIT TESTING   #
+#        whoseTurn()        #
+#        unittest3.c        #
+#############################
+whoseTurn(lowestIndex) = 0, expected 0 ---PASS---
+whoseTurn(highestIndex) = 3, expected 3 ---PASS---
+ALL TEST PASSED!!!!!
+----- unittest4.c - RESULTS -----
+#############################
+#   FUNCTION UNIT TESTING   #
+#        isGameOver()       #
+#         unittest4.c       #
+#############################
+--------------------------------
+Testing 1 depleted supply pile  
+--------------------------------
+Game is NOT over with 0 depleted supply piles ---PASS---
+Game is NOT over with 1 depleted supply pile for card 0 ---PASS---
+Game is NOT over with 1 depleted supply pile for card 1 ---PASS---
+Game is NOT over with 1 depleted supply pile for card 2 ---PASS---
+Province not tested here
+Game is NOT over with 1 depleted supply pile for card 4 ---PASS---
+Game is NOT over with 1 depleted supply pile for card 5 ---PASS---
+Game is NOT over with 1 depleted supply pile for card 6 ---PASS---
+Game is NOT over with 1 depleted supply pile for card 7 ---PASS---
+Game is NOT over with 1 depleted supply pile for card 8 ---PASS---
+Game is NOT over with 1 depleted supply pile for card 9 ---PASS---
+Game is NOT over with 1 depleted supply pile for card 10 ---PASS---
+Game is NOT over with 1 depleted supply pile for card 11 ---PASS---
+Game is NOT over with 1 depleted supply pile for card 12 ---PASS---
+Game is NOT over with 1 depleted supply pile for card 13 ---PASS---
+Game is NOT over with 1 depleted supply pile for card 14 ---PASS---
+Game is NOT over with 1 depleted supply pile for card 15 ---PASS---
+Game is NOT over with 1 depleted supply pile for card 16 ---PASS---
+Game is NOT over with 1 depleted supply pile for card 17 ---PASS---
+Game is NOT over with 1 depleted supply pile for card 18 ---PASS---
+Game is NOT over with 1 depleted supply pile for card 19 ---PASS---
+Game is NOT over with 1 depleted supply pile for card 20 ---PASS---
+Game is NOT over with 1 depleted supply pile for card 21 ---PASS---
+Game is NOT over with 1 depleted supply pile for card 22 ---PASS---
+Game is NOT over with 1 depleted supply pile for card 23 ---PASS---
+Game is NOT over with 1 depleted supply pile for card 24 ---PASS---
+Game is NOT over with 1 depleted supply pile for card 25 ---PASS---
+Game is NOT over with 1 depleted supply pile for card 26 ---PASS---
+--------------------------------
+Testing 2 depleted supply pile  
+--------------------------------
+Game is NOT over with 2 depleted supply piles for cards 0 & 1 ---PASS---
+Game is NOT over with 2 depleted supply piles for cards 0 & 2 ---PASS---
+Province not tested here
+Game is NOT over with 2 depleted supply piles for cards 0 & 4 ---PASS---
+Game is NOT over with 2 depleted supply piles for cards 0 & 5 ---PASS---
+Game is NOT over with 2 depleted supply piles for cards 0 & 6 ---PASS---
+Game is NOT over with 2 depleted supply piles for cards 0 & 7 ---PASS---
+Game is NOT over with 2 depleted supply piles for cards 0 & 8 ---PASS---
+Game is NOT over with 2 depleted supply piles for cards 0 & 9 ---PASS---
+Game is NOT over with 2 depleted supply piles for cards 0 & 10 ---PASS---
+Game is NOT over with 2 depleted supply piles for cards 0 & 11 ---PASS---
+Game is NOT over with 2 depleted supply piles for cards 0 & 12 ---PASS---
+Game is NOT over with 2 depleted supply piles for cards 0 & 13 ---PASS---
+Game is NOT over with 2 depleted supply piles for cards 0 & 14 ---PASS---
+Game is NOT over with 2 depleted supply piles for cards 0 & 15 ---PASS---
+Game is NOT over with 2 depleted supply piles for cards 0 & 16 ---PASS---
+Game is NOT over with 2 depleted supply piles for cards 0 & 17 ---PASS---
+Game is NOT over with 2 depleted supply piles for cards 0 & 18 ---PASS---
+Game is NOT over with 2 depleted supply piles for cards 0 & 19 ---PASS---
+Game is NOT over with 2 depleted supply piles for cards 0 & 20 ---PASS---
+Game is NOT over with 2 depleted supply piles for cards 0 & 21 ---PASS---
+Game is NOT over with 2 depleted supply piles for cards 0 & 22 ---PASS---
+Game is NOT over with 2 depleted supply piles for cards 0 & 23 ---PASS---
+Game is NOT over with 2 depleted supply piles for cards 0 & 24 ---PASS---
+Game is NOT over with 2 depleted supply piles for cards 0 & 25 ---PASS---
+Game is NOT over with 2 depleted supply piles for cards 0 & 26 ---PASS---
+------------------------------
+Testing depleted province pile
+------------------------------
+Testing that game should be over ---PASS---
+-------------------------------
+Testing 3 depleted supply piles
+-------------------------------
+Game is over with 3 depleted supply piles for cards 0, 1, 2 ---PASS---
+Province not tested here
+Game is over with 3 depleted supply piles for cards 0, 1, 4 ---PASS---
+Game is over with 3 depleted supply piles for cards 0, 1, 5 ---PASS---
+Game is over with 3 depleted supply piles for cards 0, 1, 6 ---PASS---
+Game is over with 3 depleted supply piles for cards 0, 1, 7 ---PASS---
+Game is over with 3 depleted supply piles for cards 0, 1, 8 ---PASS---
+Game is over with 3 depleted supply piles for cards 0, 1, 9 ---PASS---
+Game is over with 3 depleted supply piles for cards 0, 1, 10 ---PASS---
+Game is over with 3 depleted supply piles for cards 0, 1, 11 ---PASS---
+Game is over with 3 depleted supply piles for cards 0, 1, 12 ---PASS---
+Game is over with 3 depleted supply piles for cards 0, 1, 13 ---PASS---
+Game is over with 3 depleted supply piles for cards 0, 1, 14 ---PASS---
+Game is over with 3 depleted supply piles for cards 0, 1, 15 ---PASS---
+Game is over with 3 depleted supply piles for cards 0, 1, 16 ---PASS---
+Game is over with 3 depleted supply piles for cards 0, 1, 17 ---PASS---
+Game is over with 3 depleted supply piles for cards 0, 1, 18 ---PASS---
+Game is over with 3 depleted supply piles for cards 0, 1, 19 ---PASS---
+Game is over with 3 depleted supply piles for cards 0, 1, 20 ---PASS---
+Game is over with 3 depleted supply piles for cards 0, 1, 21 ---PASS---
+Game is over with 3 depleted supply piles for cards 0, 1, 22 ---PASS---
+Game is over with 3 depleted supply piles for cards 0, 1, 23 ---PASS---
+Game is over with 3 depleted supply piles for cards 0, 1, 24 ---PASS---
+Game is over with 3 depleted supply piles for cards 0, 1, 25 !!!FAIL!!!
+Game is over with 3 depleted supply piles for cards 0, 1, 26 !!!FAIL!!!
+------------------------------------------
+Testing all piles depleted except province
+------------------------------------------
+Testing that game should be over ---PASS---
+----- cardtest1.c - RESULTS -----
+#############################
+#     CARD UNIT TESTING     #
+#         Smithy            #
+#        cardtest1.c        #
+#############################
+Hand size increased by 2 !!!FAIL!!!
+Deck size decreased by 3 !!!FAIL!!!
+Discard size increased by 1 !!!FAIL!!!
+Smithy is terminal ---PASS---
+3 new cards added to hand !!!FAIL!!!
+No change to Estate victory points ---PASS---
+No change to Duchy victory points ---PASS---
+No change to Province victory points ---PASS---
+----- cardtest2.c - RESULTS -----
+#############################
+#     CARD UNIT TESTING     #
+#       Adventurer          #
+#        cardtest2.c        #
+#############################
+Adventurer is terminal ---PASS---
+Hand started with 3 treasure cards, now has 5, expected 5 ---PASS---
+Hand started with 3 treasure cards, now has 4, expected 4 ---PASS---
+Hand started with 3 treasure cards, now has 3, expected 3 ---PASS---
+No change to Estate victory points ---PASS---
+No change to Duchy victory points ---PASS---
+No change to Province victory points ---PASS---
+----- cardtest3.c - RESULTS -----
+#############################
+#     CARD UNIT TESTING     #
+#         Village            #
+#        cardtest3.c        #
+#############################
+Hand size does not increase ---PASS---
+Deck size decreased by 1 ---PASS---
+Discard size increased by 1 !!!FAIL!!!
+Village adds 2 actions ---PASS---
+1 new card added to hand ---PASS---
+No change to Estate victory points ---PASS---
+No change to Duchy victory points ---PASS---
+No change to Province victory points ---PASS---
+----- cardtest4.c - RESULTS -----
+#############################
+#     CARD UNIT TESTING     #
+#         Great Hall        #
+#        cardtest4.c        #
+#############################
+Hand size does not increase ---PASS---
+Deck size decreased by 1 ---PASS---
+Discard size increased by 1 !!!FAIL!!!
+Great Hall adds 1 action ---PASS---
+1 new card added to hand ---PASS---
+No change to Estate victory points ---PASS---
+No change to Duchy victory points ---PASS---
+No change to Province victory points ---PASS---
+------ All Unit Tests - COVERAGE -----
+File 'dominion.c'
+Lines executed:36.06% of 563
+Branches executed:38.13% of 417
+Taken at least once:29.98% of 417
+Calls executed:21.05% of 95
+Creating 'dominion.c.gcov'
+

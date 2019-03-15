@@ -1,0 +1,17 @@
+----- randomtestcard1.c - RESULTS -----
+#############################
+#   CARD RANDOM TESTING     #
+#       Great Hall          #
+#    randomtestcard2.c      #
+#############################
+\\\\\\\RESULTS SUMMARY///////
+Test Cases Run: 2000
+SUCCESS!!! ALL TESTS PASSED!!!
+------ randomtestcard1.c - COVERAGE -----
+File 'dominion.c'
+Lines executed:20.85% of 566
+Branches executed:23.26% of 417
+Taken at least once:14.15% of 417
+Calls executed:10.53% of 95
+Creating 'dominion.c.gcov'
+

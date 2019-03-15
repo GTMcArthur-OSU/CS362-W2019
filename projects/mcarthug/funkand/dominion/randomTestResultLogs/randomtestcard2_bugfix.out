@@ -1,0 +1,17 @@
+----- randomtestcard2.c - RESULTS -----
+#############################
+#   CARD RANDOM TESTING     #
+#         Village           #
+#    randomtestcard3.c      #
+#############################
+\\\\\\\RESULTS SUMMARY///////
+Test Cases Run: 2000
+SUCCESS!!! ALL TESTS PASSED!!!
+------ randomtestcard2.c - COVERAGE -----
+File 'dominion.c'
+Lines executed:21.38% of 566
+Branches executed:23.26% of 417
+Taken at least once:14.15% of 417
+Calls executed:11.58% of 95
+Creating 'dominion.c.gcov'
+
